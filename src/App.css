@@ -22,3 +22,39 @@ img {
     width: 90%;
     margin: 0 auto;
 }
+
+header {
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
+    padding: 5px 0;
+}
+header .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.logo {
+    width: 150px;
+    height: 60px;
+}
+.nav {
+    display: flex;
+
+    align-items: center;
+    flex-grow: 2;
+    justify-content: flex-end;
+}
+.nav li {
+    margin-left: 30px;
+}
+.nav li a {
+    color: #000;
+}
+
+@media (max-width: 480px) {
+    header .wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav {
+        margin: 10px 0;
+    }
+}
