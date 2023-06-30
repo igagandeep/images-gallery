@@ -14,51 +14,100 @@ const secretKey = "1svZZYm3FwvxM0KZcxajbDiMMEVomiz1mZ8lls1SE9A";
 
 const App = () => {
     const [images, setImages] = useState([]);
-    const [loading, setLoading] = useState(true);
-
+    const [loadingAnimation, setLoadingAnimation] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [page, setPage] = useState(1);
+    const [query, setQuery] = useState("");
     useEffect(() => {
-        getImages();
-    }, []);
+        if (query) {
+            searchImages(query);
+        } else {
+            getImages();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [page]);
 
     const getImages = async () => {
+        setIsLoading(true);
         try {
             const response = await axios.get(apiEndpoint, {
                 headers: {
                     Authorization: `Client-ID ${secretKey}`,
                 },
                 params: {
-                    per_page: 28,
+                    page: page,
                 },
             });
-            setImages(response.data);
+            setImages((prevImages) => [...prevImages, ...response.data]);
             setTimeout(() => {
-                setLoading(false);
+                setLoadingAnimation(false);
             }, 1500);
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false);
         }
     };
 
-    const searchImages = async (query) => {
-        try {
-            const response = await axios.get(searchEndpoint, {
-                headers: {
-                    Authorization: `Client-ID ${secretKey}`,
-                },
-                params: {
-                    query: query,
-                    per_page: 28,
-                },
-            });
-            setImages(response.data.results);
-        } catch (error) {
-            console.log(error);
+    const searchImages = async (userInput) => {
+        setIsLoading(true);
+
+        // it checks if coming userinput is equal to the previous one if not then update page number to
+        if (query !== userInput) {
+            try {
+                const response = await axios.get(searchEndpoint, {
+                    headers: {
+                        Authorization: `Client-ID ${secretKey}`,
+                    },
+                    params: {
+                        query: userInput,
+                        page: 1,
+                    },
+                });
+
+                setImages(response.data.results);
+                setQuery(userInput);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            try {
+                const response = await axios.get(searchEndpoint, {
+                    headers: {
+                        Authorization: `Client-ID ${secretKey}`,
+                    },
+                    params: {
+                        query: userInput,
+                        per_page: 15,
+                        page: page,
+                    },
+                });
+                if (page === 1) {
+                    setImages(response.data.results);
+                    setQuery(userInput);
+                } else {
+                    setImages((prevImages) => [
+                        ...prevImages,
+                        ...response.data.results,
+                    ]);
+                }
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setIsLoading(false);
+            }
         }
+    };
+
+    const handleLoadMore = () => {
+        setPage((prevPage) => prevPage + 1);
     };
 
     return (
         <div className="app">
-            {loading ? (
+            {loadingAnimation ? (
                 <LoadingAnimation />
             ) : (
                 <>
@@ -66,7 +115,11 @@ const App = () => {
                     {images.length === 0 ? (
                         <NoDataFound />
                     ) : (
-                        <Gallery images={images} />
+                        <Gallery
+                            images={images}
+                            isLoading={isLoading}
+                            handleLoadMore={handleLoadMore}
+                        />
                     )}
                     <Footer />
                 </>

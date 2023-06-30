@@ -326,6 +326,24 @@ main {
     text-align: center;
 }
 
+.load-btn-container {
+    display: flex;
+    margin-top: 40px;
+    justify-content: center;
+}
+.load-btn-container button {
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+}
+.load-btn-container button:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 /****************************** 😀😀 Footer 😀😀 ********************************/
 footer {
     margin-top: 80px;

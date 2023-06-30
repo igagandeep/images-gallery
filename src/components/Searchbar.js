@@ -12,7 +12,6 @@ const SearchBar = ({ searchImages }) => {
         if (query.trim() !== "") {
             searchImages(query);
         }
-        setQuery("");
     };
 
     return (
