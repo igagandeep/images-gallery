@@ -19,7 +19,7 @@ const Header = ({ searchImages }) => {
             target: "_blank",
             rel: "noreferrer",
         },
-        { label: "Contact", href: "mailto:igagandeep95@gmail.com" },
+        { label: "Contact", href: "#" },
         { label: "Join", href: "#" },
     ];
 

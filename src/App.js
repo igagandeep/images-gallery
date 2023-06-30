@@ -8,12 +8,13 @@ import Footer from "./components/Footer";
 import NoDataFound from "./components/NoDataFound";
 import LoadingAnimation from "./components/LoadingAnimation";
 
+const apiEndpoint = "https://api.unsplash.com/photos";
+const searchEndpoint = "https://api.unsplash.com/search/photos";
+const secretKey = "1svZZYm3FwvxM0KZcxajbDiMMEVomiz1mZ8lls1SE9A";
+
 const App = () => {
     const [images, setImages] = useState([]);
-    const apiEndpoint = "https://api.unsplash.com/photos";
     const [loading, setLoading] = useState(true);
-    const searchEndpoint = "https://api.unsplash.com/search/photos";
-    const secretKey = "1svZZYm3FwvxM0KZcxajbDiMMEVomiz1mZ8lls1SE9A";
 
     useEffect(() => {
         getImages();
@@ -32,7 +33,7 @@ const App = () => {
             setImages(response.data);
             setTimeout(() => {
                 setLoading(false);
-            }, 1200);
+            }, 1500);
         } catch (error) {
             console.log(error);
         }

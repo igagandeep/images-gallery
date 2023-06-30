@@ -1,6 +1,7 @@
 /****************************** 😀😀 GLOBAL STYLE 😀😀 ********************************/
 * {
     margin: 0;
+    font-family: "Lora", serif;
 }
 
 :root {
@@ -189,6 +190,7 @@ main {
 .gallery li:hover {
     transform: translateY(-2px);
     transition: transform 0.3s ease;
+    background-color: #000;
 }
 
 .gallery img {
