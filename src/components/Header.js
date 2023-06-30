@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from "react";
 import Logo from "../assets/logo.png";
 import backgroundImage from "../assets/banner.jpg";
 import Searchbar from "./Searchbar";
@@ -10,28 +10,36 @@ const Header = ({ searchImages }) => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "bottom",
     };
+
+    const navLinks = [
+        { label: "Home", href: "/" },
+        {
+            label: "About",
+            href: "http://gagandeep-portfolio.com/",
+            target: "_blank",
+            rel: "noreferrer",
+        },
+        { label: "Contact", href: "mailto:igagandeep95@gmail.com" },
+        { label: "Join", href: "#" },
+    ];
+
     return (
         <header>
             <nav>
                 <div className="wrapper">
-                    <img
-                        src={Logo}
-                        className="logo"
-                        alt="this is logo of the website"
-                    />
+                    <img src={Logo} className="logo" alt="Website Logo" />
                     <ul className="nav">
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
-                        <li>
-                            <a href="#">Join</a>
-                        </li>
+                        {navLinks.map((link, index) => (
+                            <li key={index}>
+                                <a
+                                    href={link.href}
+                                    target={link.target}
+                                    rel={link.rel}
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </nav>
@@ -44,4 +52,5 @@ const Header = ({ searchImages }) => {
         </header>
     );
 };
+
 export default Header;

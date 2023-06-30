@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <footer>
-            <h4>Front end developer challenge</h4>
+            <h4>Gagandeep Guru &#169; 2023 All Rights Reserved</h4>
         </footer>
     );
 };

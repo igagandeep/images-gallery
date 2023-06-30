@@ -9,10 +9,9 @@ const SearchBar = ({ searchImages }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Perform search with the query
-        console.log("Search:", query);
-        // Reset the query
-        searchImages(query);
+        if (query.trim() !== "") {
+            searchImages(query);
+        }
         setQuery("");
     };
 

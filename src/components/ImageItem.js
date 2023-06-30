@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { BsFillHeartFill, BsPlus, BsDownload } from "react-icons/bs";
 
 const Images = ({ image }) => {
@@ -10,6 +10,7 @@ const Images = ({ image }) => {
         setIsModalOpen(true);
         setModalImageSrc(src);
     };
+
     const closeModal = () => {
         setIsModalOpen(false);
         setModalImageSrc("");
@@ -25,7 +26,11 @@ const Images = ({ image }) => {
 
     return (
         <>
-            <li onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <li
+                className="image-item"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
                 <img
                     src={image.urls.regular}
                     alt={image.alt_description}
@@ -45,7 +50,7 @@ const Images = ({ image }) => {
                             <div className="profile">
                                 <img
                                     src={image.user.profile_image.small}
-                                    alt="pic of user who posted the pic"
+                                    alt="Profile pic of the user who posted the pic"
                                 />
                                 <p>{image.user.first_name}</p>
                             </div>
@@ -63,7 +68,7 @@ const Images = ({ image }) => {
                     <img
                         className="modal-content"
                         src={modalImageSrc}
-                        alt="this is the modal pic"
+                        alt="Modal pic"
                         onClick={(e) => e.stopPropagation()}
                     />
                 </div>
@@ -71,4 +76,5 @@ const Images = ({ image }) => {
         </>
     );
 };
+
 export default Images;
