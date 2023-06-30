@@ -25,11 +25,11 @@ img {
 
 /****************************** 😀😀 HEADER 😀😀 ********************************/
 
-header {
+nav {
     box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
     padding: 5px 0;
 }
-header .wrapper {
+nav .wrapper {
     display: flex;
     justify-content: space-between;
 }
@@ -49,6 +49,62 @@ header .wrapper {
 }
 .nav li a {
     color: #000;
+}
+
+.banner {
+    border: 1px solid black;
+    height: 500px;
+}
+.banner .wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    height: 100%;
+}
+h1 {
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    font-size: 64px;
+}
+.search-bar {
+    display: flex;
+    width: 60%;
+    align-items: center;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    border: none;
+    background: none;
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.search-bar svg {
+    width: 18px;
+    height: 18px;
+    stroke: #333;
+    stroke-width: 2;
+    fill: none;
+    transition: stroke 0.3s ease-in-out;
+}
+
+.search-bar button:hover svg {
+    stroke: #555;
 }
 
 /****************************** 😀😀 GALLERY 😀😀 ********************************/
@@ -205,8 +261,15 @@ main {
     margin-left: 5px;
 }
 
+.no-data-found {
+    font-size: 32px;
+    margin-top: 65px;
+    text-align: center;
+}
+
 /****************************** 😀😀 Footer 😀😀 ********************************/
 footer {
+    margin-top: 80px;
     text-align: center;
     padding: 10px;
     background-color: #000;
@@ -215,17 +278,28 @@ footer {
 
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px) {
+    .banner {
+        height: 500px;
+    }
+
     .modal-content {
         width: 100%;
     }
 }
 
-@media (max-width: 480px) {
-    header .wrapper {
+@media (max-width: 500px) {
+    nav .wrapper {
         flex-direction: column;
         align-items: center;
     }
     .nav {
         margin: 10px 0;
+    }
+    h1 {
+        margin-bottom: 20px;
+        font-size: 32px;
+    }
+    .search-bar {
+        width: 100%;
     }
 }
