@@ -1,5 +1,12 @@
+/****************************** 😀😀 GLOBAL STYLE 😀😀 ********************************/
 * {
     margin: 0;
+}
+
+:root {
+    --primary-color: #000;
+    --secondary-color: #fff;
+    --searchbar-bg-color: #f8f8f8;
 }
 
 ul {
@@ -18,7 +25,325 @@ img {
     max-width: 100%;
 }
 .wrapper {
-    max-width: 1080px;
+    max-width: 1200px;
     width: 90%;
     margin: 0 auto;
+}
+
+/****************************** 😀😀 HEADER 😀😀 ********************************/
+
+nav {
+    box-shadow: 0px 4px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 5px 0;
+}
+nav .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.logo {
+    width: 150px;
+    height: 60px;
+}
+.nav {
+    display: flex;
+    align-items: center;
+    flex-grow: 2;
+    justify-content: flex-end;
+}
+.nav li {
+    margin-left: 30px;
+}
+.nav li a {
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+.nav li a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.nav li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.banner {
+    height: 500px;
+}
+.banner .wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: var(--secondary-color);
+    height: 100%;
+}
+h1 {
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    font-size: 64px;
+}
+.search-bar {
+    display: flex;
+    width: 60%;
+    align-items: center;
+    background-color: var(--searchbar-bg-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    border: none;
+    background: none;
+    padding: 10px;
+    outline: none;
+    font-size: 14px;
+    color: #333;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.search-bar svg {
+    width: 18px;
+    height: 18px;
+    stroke: #333;
+    stroke-width: 2;
+    fill: none;
+    transition: stroke 0.3s ease-in-out;
+}
+
+.search-bar button:hover svg {
+    stroke: #555;
+}
+
+/****************************** 😀😀 GALLERY 😀😀 ********************************/
+main {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.gallery {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 10px;
+}
+
+.gallery li {
+    background-color: var(--secondary-color);
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px var(--primary-color);
+}
+
+.gallery li:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+}
+
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.gallery li:hover img {
+    opacity: 0.9;
+}
+
+.gallery li img {
+    transition: opacity 0.3s ease;
+}
+
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Add Animation */
+.modal-content {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {
+        -webkit-transform: scale(0);
+    }
+    to {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes zoom {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.top-container {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    z-index: 999;
+    top: 10px;
+}
+.like-btn,
+.add-collection,
+.download-btn {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    color: #302e2e;
+    padding: 3px 8px;
+    cursor: pointer;
+    box-shadow: 0 8px 4px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+.bottom-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    z-index: 999;
+    bottom: 10px;
+}
+.profile {
+    display: flex;
+    color: var(--secondary-color);
+    margin-left: 10px;
+    align-items: center;
+}
+.profile img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+.profile p {
+    margin-left: 5px;
+    text-shadow: 2px 2px 4px rgba(86, 80, 80, 0.649);
+}
+
+.no-data-found {
+    font-size: 32px;
+    margin-top: 65px;
+    text-align: center;
+}
+
+/****************************** 😀😀 Footer 😀😀 ********************************/
+footer {
+    margin-top: 80px;
+    text-align: center;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: lightgray;
+}
+
+@media (max-width: 700px) {
+    .banner {
+        height: 500px;
+    }
+    h1 {
+        margin-bottom: 20px;
+        font-size: 48px;
+    }
+    .search-bar {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 100%;
+    }
+}
+
+@media (max-width: 550px) {
+    nav .wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav {
+        margin: 10px 0;
+    }
+    h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 350px) {
+    .nav {
+        margin: 10px 0;
+    }
+    .nav li {
+        margin-left: 15px;
+    }
+    .nav li a {
+        font-size: 14px;
+    }
 }
