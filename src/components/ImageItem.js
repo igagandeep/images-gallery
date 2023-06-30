@@ -34,11 +34,12 @@ const Images = ({ image }) => {
                 <img
                     src={image.urls.regular}
                     alt={image.alt_description}
+                    loading="lazy"
                     onClick={() => openModal(image.urls.regular)}
                 />
                 {isHovered && (
                     <>
-                        <div className="top-container">
+                        <div className="image-item__actions">
                             <button className="like-btn">
                                 <BsFillHeartFill />
                             </button>
@@ -46,9 +47,10 @@ const Images = ({ image }) => {
                                 <BsPlus />
                             </button>
                         </div>
-                        <div className="bottom-container">
+                        <div className="image-item__info">
                             <div className="profile">
                                 <img
+                                    loading="lazy"
                                     src={image.user.profile_image.small}
                                     alt="Profile pic of the user who posted the pic"
                                 />
@@ -66,6 +68,7 @@ const Images = ({ image }) => {
                 <div className="modal" onClick={closeModal}>
                     <span className="close">&times;</span>
                     <img
+                        loading="lazy"
                         className="modal-content"
                         src={modalImageSrc}
                         alt="Modal pic"

@@ -6,10 +6,12 @@ import Header from "./components/Header";
 import Gallery from "./components/Gallery";
 import Footer from "./components/Footer";
 import NoDataFound from "./components/NoDataFound";
+import LoadingAnimation from "./components/LoadingAnimation";
 
 const App = () => {
     const [images, setImages] = useState([]);
     const apiEndpoint = "https://api.unsplash.com/photos";
+    const [loading, setLoading] = useState(true);
     const searchEndpoint = "https://api.unsplash.com/search/photos";
     const secretKey = "1svZZYm3FwvxM0KZcxajbDiMMEVomiz1mZ8lls1SE9A";
 
@@ -28,6 +30,9 @@ const App = () => {
                 },
             });
             setImages(response.data);
+            setTimeout(() => {
+                setLoading(false);
+            }, 1200);
         } catch (error) {
             console.log(error);
         }
@@ -52,15 +57,20 @@ const App = () => {
 
     return (
         <div className="app">
-            <Header searchImages={searchImages} />
-            {images.length === 0 ? (
-                <NoDataFound />
+            {loading ? (
+                <LoadingAnimation />
             ) : (
-                <Gallery images={images} />
+                <>
+                    <Header searchImages={searchImages} />
+                    {images.length === 0 ? (
+                        <NoDataFound />
+                    ) : (
+                        <Gallery images={images} />
+                    )}
+                    <Footer />
+                </>
             )}
-            <Footer />
         </div>
     );
 };
-
 export default App;
